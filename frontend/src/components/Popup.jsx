@@ -13,9 +13,7 @@ function Popup({abrirModal,botonContador}) {
         
         console.log("Estoy haciendo click!",window.opener.document)
     }
-    function test(params) {
-        
-    }
+   
     return  (
         <div className='div_main min-vh-100 border'>
          <div>
