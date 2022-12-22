@@ -1,0 +1,70 @@
+
+
+$theme-colors: (
+    "primary":    #a8dadc,
+    "secondary": #fff
+    
+    );
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Source+Sans+Pro&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@500');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+    
+    
+    :root{
+      --bs-body-font-family: 'Roboto', sans-serif;
+    }
+    @import "../node_modules/bootstrap/scss/bootstrap";
+    @import "../node_modules/bootstrap/scss/utilities";
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+
+
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+
+.div_main{
+    background-color: #93cacb;
+}
+
+.div_modal{
+  position: fixed;
+        top: 25%;
+        right: 15%;
+        width: 70%;
+        height: 68%;
+        bottom: 30%;
+        z-index: 1;
+        background: #93cacb;
+        border: 1px solid black;
+        
+}
+
+.display{
+  display: none;
+}
