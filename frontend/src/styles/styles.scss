@@ -1,5 +1,6 @@
+@use "sass:meta";
 
-
+$font-family-sans-serif: 'Roboto Condensed', sans-serif;;
 $theme-colors: (
     "primary":    #a8dadc,
     "secondary": #fff
@@ -11,9 +12,8 @@ $theme-colors: (
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 
     
-    
     :root{
-      --bs-body-font-family: 'Roboto', sans-serif;
+      --font-family-sans-serif: #{meta.inspect($font-family-sans-serif)};
     }
     @import "../node_modules/bootstrap/scss/bootstrap";
     @import "../node_modules/bootstrap/scss/utilities";
