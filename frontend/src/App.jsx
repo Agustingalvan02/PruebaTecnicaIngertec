@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import { useDispatch, useSelector } from "react-redux";
 
-import imagenPrueba from "./images/placeholder-image.png";
+import Button from "react-bootstrap/Button";
+
+import { useDispatch, useSelector } from "react-redux";
+import { sumaImpar } from "./components/actions";
+
 import tajMahal from "./images/tajMahal.jpg";
 import cristoRedentor from "./images/estatua-cristo-redentor-og.jpg";
 import petra from "./images/petra.jpg";
@@ -12,50 +12,63 @@ import coliseo from "./images/coliseo-romano_16022ed4_1280x853.jpg";
 import machuPicchu from "./images/machuPicchu.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BsPersonSquare } from "react-icons/bs";
-import { sumaImpar } from "./components/actions";
+
 import Modal from "./components/Modal";
 import Popup from "./components/Popup";
+
 function App() {
-  const [firstcount, setFirstCount] = useState(0);
+  const [contador, setContador] = useState({
+    tajMahal: 0,
+    petra: 0,
+    machuPicchu: 0,
+  });
   const [secondcount, setSecondCount] = useState(0);
-  const [thirdcount, setThirdCount] = useState(0);
+  const [activeFoto, setActiveFoto] = useState("");
   const [fourcount, setFourCount] = useState(0);
-  const [fivecount, setFiveCount] = useState(0);
-  const [renderPage, setRenderPage] = useState();
+
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
   const [imagenes, setImagenes] = useState("");
-  const dispatch = useDispatch();
-  var contador = useSelector((state) => state);
-  
 
-  
+  const dispatch = useDispatch();
+
   useEffect(() => {
     init();
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    console.log("soy active foto: ", activeFoto);
+    const handleExceptionData = () => {
+      setContador((preValue) => {
+        return {
+          ...preValue,
+          [activeFoto]: JSON.parse(localStorage.getItem(activeFoto)),
+        };
+      });
+    };
+    window.addEventListener("storage", handleExceptionData);
+
+    return function cleanup() {
+      window.removeEventListener("storage", handleExceptionData);
+    };
+  }, [activeFoto]);
 
   function init() {
     dispatch(sumaImpar("init"));
-    setRenderPage(contador)
-    
   }
-
-   
-  
 
   function abrirPopup(imagenNombre) {
     var maravilla = imagenNombre.slice(12, imagenNombre.length - 4);
     var dataPopup = "width=800,height=400";
     window.open(`/popup?${imagenNombre}`, "popup=yes", dataPopup);
   }
-  function abrirModal(id, imagen) {
+  function abrirModal(id, imagen, cadena) {
+    setActiveFoto(cadena);
     if ((imagen && id == 2) || id === 4) {
       setOpen(true);
       setImagenes(imagen);
       id == 2 ? setSecondCount(secondcount + 1) : setFourCount(fourcount + 1);
     } else if ((imagen && id === 1) || id === 3 || id === 5) {
-      
-
       abrirPopup(imagen);
     }
   }
@@ -92,7 +105,7 @@ function App() {
               xs="auto"
             >
               <img
-                onClick={() => abrirModal(1, tajMahal)}
+                onClick={() => abrirModal(1, tajMahal, "tajMahal")}
                 name="tajMahal"
                 id="1"
                 src={tajMahal}
@@ -103,9 +116,8 @@ function App() {
 
               <div className="text-center">
                 <BsPersonSquare />{" "}
-                <span   id="img1" on>
-                  
-                  {contador ? contador.tajMahal : "0"}
+                <span id="img1" on>
+                  {contador.tajMahal}
                 </span>
               </div>
               <p className="text-center text-wrap ">
@@ -141,7 +153,7 @@ function App() {
             <div className=" col-sm-auto   ">
               <a href="#!" data-bs-toggle="modal" data-bs-target="#petra"></a>
               <img
-                onClick={() => abrirModal(3, petra)}
+                onClick={() => abrirModal(3, petra, "petra")}
                 name="petra"
                 id="3"
                 src={petra}
@@ -150,8 +162,7 @@ function App() {
                 width="200"
               ></img>
               <div className="text-center">
-                <BsPersonSquare />{" "}
-                <span id="img3"> {contador ? contador.petra : "0"} </span>
+                <BsPersonSquare /> <span id="img3"> {contador.petra} </span>
               </div>
               <p className="text-center">
                 Petra es un importante enclave <br /> arqueológico en <br />{" "}
@@ -184,7 +195,7 @@ function App() {
                 data-bs-target="#machuPicchu"
               ></a>
               <img
-                onClick={() => abrirModal(5, machuPicchu)}
+                onClick={() => abrirModal(5, machuPicchu, "machuPicchu")}
                 id="5"
                 name="machuPicchu"
                 src={machuPicchu}
@@ -194,8 +205,8 @@ function App() {
               ></img>
               <div className="text-center">
                 {" "}
-                <BsPersonSquare /> <span id="img5"></span>{" "}
-                {contador ? contador.machuPicchu : "0"}{" "}
+                <BsPersonSquare /> <span id="img5"></span>
+                {contador.machuPicchu}
               </div>
               <p className="text-center">
                 Machu Picchu <br />

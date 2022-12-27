@@ -1,27 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sumaImpar } from "./actions";
 import Button from "react-bootstrap/Button";
-function Popup(e) {
+function Popup() {
+  const [counter,setCounter]= useState({})
   const dispatch = useDispatch();
-  var contador = useSelector((state) => state);
   const location = useLocation();
   var maravilla = location.search.slice(13, location.search.length - 4);
 
-  // console.log("Soy el contador: ", contador);
-  // useEffect(() => {
-  //   dispatch(contador);
-  // }, []);
 
- 
+
   function handleClick(e) {
     if (maravilla === "tajMahal") {
       dispatch(sumaImpar(maravilla));
+      setCounter(useSelector((state)=>state.tajMahal))
     } else if (maravilla === "petra") {
       dispatch(sumaImpar(maravilla));
+      setCounter(useSelector((state)=>state.petra))
     } else if (maravilla === "machuPicchu") {
       dispatch(sumaImpar(maravilla));
+      setCounter(useSelector((state)=>state.machuPicchu))
     }
   }
 

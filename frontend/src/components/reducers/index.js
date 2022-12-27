@@ -1,13 +1,11 @@
 const initialState = {
-   tajMahal: JSON.parse(localStorage.getItem("tajMahal")) || 0,
-  petra: JSON.parse(localStorage.getItem("petra")) || 0,
-  machuPicchu: JSON.parse(localStorage.getItem("machuPicchu")) || 0,
+  tajMahal: 0,
+  petra: 0,
+  machuPicchu: 0,
   init: 0,
 };
 
 export default function reducer(state = initialState, action) {
-  // console.log("Entré al reducer!: ",action.type)
-  // console.log("Data Taj Majal: ",state.tajMahal)
   switch (action.type) {
     case "tajMahal":
       localStorage.setItem("tajMahal", state.tajMahal + 1);
