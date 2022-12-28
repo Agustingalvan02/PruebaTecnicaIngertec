@@ -5,11 +5,11 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { sumaImpar } from "./components/actions";
 
-import tajMahal from "./assets/tajMahal.jpg";
-import cristoRedentor from "./assets/estatua-cristo-redentor-og.jpg";
-import petra from "./assets//petra.jpg";
-import coliseo from "./assets/coliseo-romano_16022ed4_1280x853.jpg";
-import machuPicchu from "./assets//machuPicchu.jpg";
+import tajMahal from "./images/tajMahal.jpg";
+import cristoRedentor from "./images/estatua-cristo-redentor-og.jpg";
+import petra from "./images/petra.jpg";
+import coliseo from "./images/coliseo-romano_16022ed4_1280x853.jpg";
+import machuPicchu from "./images/machuPicchu.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BsPersonSquare } from "react-icons/bs";
 
